@@ -10,22 +10,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        loadApiData()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container_fragment, ProductoFragment()).commit()
     }
 
-private fun loadApiData (){
-    val service = RetrofitClient.retrofitInstance()
-    val call = service.getProductos()
-    call.enqueue(object : retrofit2.Callback<ArrayList<ListaProductosEntity>>{
-        override fun onResponse(call: Call<ArrayList<ListaProductosEntity>>, response: Response<ArrayList<ListaProductosEntity>>) {
-            Log.d("Main", "${response.isSuccessful}")
-            Log.d("Main", "${response.body()}")
-        }
-
-        override fun onFailure(call: Call<ArrayList<ListaProductosEntity>>, t: Throwable) {
-            Log.d("Main", "$t")
-        }
-
-    })
-}
 }

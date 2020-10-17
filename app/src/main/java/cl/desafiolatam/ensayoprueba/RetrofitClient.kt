@@ -10,10 +10,9 @@ class RetrofitClient {
 
     companion object {
 
-
         fun retrofitInstance(): ProductosApi {
 
-            var retrofitClient = Retrofit.Builder()
+            val retrofitClient = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
